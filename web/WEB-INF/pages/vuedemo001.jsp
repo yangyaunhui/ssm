@@ -35,10 +35,50 @@
 
 <div id="app">
     vue因为是单页面的,所以必须只有1个根标签,以上的h1和div都不归vue负责
+    插值表达式:1.可以直接调用js中的方法
+             2.可以进行运算
+             3.可以用加号做拼接,就是和加法不同
+             4.插值表达式,显示对象的格式  xxx点yyy
+             5.插值表达式可以做三木(三元)运算,非常非常重要
+
     <h2>
             {{sayHello}}<br>
             {{sayEating}}<br>
+            {{sayEating}} 的长度是{{sayEating.length}}<br>
             {{lightLine}}<br>
+            {{apple.pname}}的价格是:{{apple.price / 100}}元/斤<br>
+            {{apple.pname}}的价格是:{{apple.price + ''+100}}元/斤<br>
+            当前{{apple.pname}}的价格{{ apple.price / 100 > 7.7 ? '太贵了,买不起'  : '好便宜啊,剁手都要买' }}<br>
+            使用v-if,当前的{apple.pname}}的价格<br>
+            <div v-if=" apple.price  > 770  ">
+                <span style="color: red">太贵了,买不起</span>
+            </div>
+            <div v-else-if=" apple.price  > 555  ">
+                <span style="color: yellow">考虑考虑</span>
+            </div>
+            <div v-else>
+                <span style="color: green">剁手都要买</span>
+            </div>
+
+        <%--刚刚学完vue的插值表达式,那么知道vue的根本核心是这样的,把数据显示到前端--%>
+        <%--如果只使用插值表达式显示数据,那么它的显示数据的内容 大概就是4种如果想要--%>
+        <%--达到效果更佳强的效果,那么插值表达式是不能够满足的,所以就有了新的方式,叫做指令。--%>
+        <%--因为前端界面是html的,插值表达式它只能对文本信息做出数据的渲染...没有对标签做出数据的增强--%>
+        <%--那么我们就要学习更强的,就是叫做指令...用了弥补和增强插值表达式的不足--%>
+        <%--比如说动态改变金钱的颜色,超过2元就是红色,低于2元就是绿色--%>
+        <%--上面的改变颜色不太好做出来,那么我们就印出来指令,指令是作用在html标签上的--%>
+        <%--指令:指令 (Directives) 是带有 v- 前缀的特殊 attribute--%>
+        <%--指令 attribute 的值预期是单个 JavaScript 表达式 (v-for 是例外情况，稍后我们再讨论)--%>
+        <%--指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM--%>
+        <%--学习下面的指令 v-text v-html--%>
+        <%--v-text:插值表达式--%>
+    <span v-text="apple.pname"></span>价格是:{{apple.price / 100}}元/斤<br>
+        <%--v-text优点:可以显示出data数据中的所有数据--%>
+        <span v-text="vtext"></span><br><%--v-text不编译文本中的html信息--%>
+        <span v-html="vhtml"></span><br> <%--v-html编译文本中的html信息 显示的场景是年龄超过50为红色--%>
+        <span>{{vtext}}</span><br> <%--插值表达式不编译文本中的html信息--%>
+        <%--{{vtext}}想要正常显示{{}}中的内容是不行的--%>
+        <span v-pre>{{vtext}}</span><br>
     </h2>
 </div>
 
@@ -64,7 +104,14 @@
         ,data:{
             sayHello:'你好世界',
             sayEating:'加油干饭人',
-            lightLine:'发射动感光波'
+            lightLine:'发射动感光波',
+            apple:{
+                pid:15,
+                pname:'红富士',//vue是数据驱动,什么是数据驱动,就是数据一改变,前端进行改变
+                price:888 //单价是元 ------ 显示给前端后,显示成功后 元
+            },
+            vtext:'<h1>你看我是标题吗</h1>',
+            vhtml:'<h1>你看我是标题吗</h1>',
         }
     });
 

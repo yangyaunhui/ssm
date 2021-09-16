@@ -38,7 +38,7 @@
     <select name="" id="heroSelect">
         <option value="1">韩信</option>
         <option value="2">赵云</option>
-        <option value="3">赔钱虎</option>
+        <option value="3">小乔</option>
     </select>
 </div>
 <script>
