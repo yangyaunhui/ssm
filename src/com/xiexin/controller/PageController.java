@@ -40,4 +40,9 @@ public class PageController {
         return "vuedemo003";
     }
 
+    @RequestMapping("/vuedemo004")
+    public String vuedemo004() {
+        return "vuedemo004";
+    }
+
 }

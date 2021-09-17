@@ -22,12 +22,22 @@
         <ul>
             <li v-for=" (item,index) in hulus " :key="hulus.id" >{{ item.name}}</li>
         </ul>
+        <select v-model="hulusSpell" v-on:change="selectWaWa(hulusSpell)">
+            <option :value="item.spell" v-for="(item,index) in hulus">{{item.name}}</option>
+        </select>
+        <span>{{hulusSpell}}</span><br>
+        <%--如果v-show为false,那么前端页面不显示代码--%>
+            <%-- v-show 不支持<template>元素--%>
+        <span v-show="ok">猜猜我在哪</span>
     </div>
+
     <script>
         var vm = new Vue({
             el:'#app',
             data:{
               hulus:[],
+                hulusSpell:'',
+                ok:false
             },
             methods: {
                 showHuluwa:function(){
@@ -67,6 +77,10 @@
                             spell:'神葫芦'
                         },];
                     this.hulus=arr;
+                },
+
+                selectWaWa:function (hulusSpell) {
+                    console.log("我选择了一个葫芦"+hulusSpell);
                 }
             }
         });
